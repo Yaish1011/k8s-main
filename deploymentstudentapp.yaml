@@ -16,6 +16,20 @@ spec:
     spec:
       containers:
       - name: my-app-container
-        image: yash101100/studentapp:app  # Replace with your Docker image name and tag
+        image: yash101100/studentappapp:latest  # Replace with your Docker image name and tag
         ports:
         - containerPort: 8080  # Exposed port in your Docker image
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: my-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
